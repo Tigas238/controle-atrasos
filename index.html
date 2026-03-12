@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="manifest" href="manifest.json">
+
+<title>Controle de Atrasos</title>
+
+<style>
+
+body{
+font-family: system-ui;
+background:#f4f6f8;
+padding:20px;
+max-width:500px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+margin-bottom:20px;
+}
+
+input{
+padding:8px;
+margin:5px;
+}
+
+button{
+background:#2c3e50;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+border-bottom:1px solid #ddd;
+padding:8px;
+text-align:center;
+}
+
+.progress{
+background:#ddd;
+height:15px;
+border-radius:10px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.bar{
+background:#27ae60;
+height:100%;
+width:0%;
+}
+
+.delete{
+background:#e74c3c;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Controle de Atrasos</h2>
+
+<div class="card">
+
+<label>Data</label>
+<input type="date" id="data">
+
+<label>Hora de entrada</label>
+<input type="time" id="hora">
+
+<br><br>
+
+<button onclick="adicionar()">Adicionar</button>
+<button onclick="resetar()">Zerar</button>
+
+</div>
+
+<div class="card">
+
+<h3 id="restante">Restam: 90 minutos</h3>
+
+<div class="progress">
+<div class="bar" id="barra"></div>
+</div>
+
+</div>
+
+<div class="card">
+
+<table>
+
+<thead>
+<tr>
+<th>Data</th>
+<th>Hora</th>
+<th>Atraso</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody id="tabela"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+let limite = 90
+let registros = JSON.parse(localStorage.getItem("registros")) || []
+
+document.getElementById("data").valueAsDate = new Date()
+
+function calcularAtraso(hora){
+
+let correta = "08:00"
+
+let [h1,m1] = hora.split(":")
+let [h2,m2] = correta.split(":")
+
+let entrada = (h1*60)+Number(m1)
+let certo = (h2*60)+Number(m2)
+
+let atraso = entrada - certo
+
+if(atraso < 0) atraso = 0
+
+return atraso
+
+}
+
+function atualizar(){
+
+let tabela = document.getElementById("tabela")
+tabela.innerHTML = ""
+
+let usado = 0
+
+registros.forEach((r,i)=>{
+
+let linha = `
+<tr>
+<td>${r.data}</td>
+<td>${r.hora}</td>
+<td>${r.atraso} min</td>
+<td><button class="delete" onclick="remover(${i})">X</button></td>
+</tr>
+`
+
+tabela.innerHTML += linha
+
+usado += r.atraso
+
+})
+
+let restante = limite - usado
+
+document.getElementById("restante").innerText =
+"Restam: "+restante+" minutos"
+
+let porcentagem = (usado/limite)*100
+
+document.getElementById("barra").style.width =
+porcentagem+"%"
+
+if(restante < 0){
+document.getElementById("restante").style.color="red"
+}
+
+localStorage.setItem("registros",JSON.stringify(registros))
+
+}
+
+function adicionar(){
+
+let data = document.getElementById("data").value
+let hora = document.getElementById("hora").value
+
+if(!data || !hora){
+
+alert("Preencha os campos")
+
+return
+
+}
+
+let atraso = calcularAtraso(hora)
+
+registros.push({data,hora,atraso})
+
+atualizar()
+
+}
+
+function remover(i){
+
+registros.splice(i,1)
+
+atualizar()
+
+}
+
+function resetar(){
+
+if(confirm("Apagar todos registros?")){
+
+registros=[]
+
+localStorage.removeItem("registros")
+
+atualizar()
+
+}
+
+}
+
+atualizar()
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register("sw.js")
+
+}
+
+</script>
+
+</body>
+</html>
