@@ -23,74 +23,89 @@ box-sizing:border-box;
 
 body{
 font-family:system-ui;
-background:#f2f3f5;
-padding:15px;
-color:#111;
+background:#f3f5f9;
+padding:20px;
+color:#111827;
 }
 
-.topo{
+.topbar{
 display:flex;
 align-items:center;
 justify-content:space-between;
-margin-bottom:20px;
+margin-bottom:25px;
+}
+
+.topbar h1{
+font-size:42px;
+font-weight:700;
+color:#0f172a;
 }
 
 .menu-btn{
-background:#2c3e50;
-color:white;
+
+width:50px;
+height:50px;
 border:none;
-width:45px;
-height:45px;
-border-radius:10px;
-font-size:22px;
+border-radius:14px;
+background:white;
+font-size:24px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+cursor:pointer;
+
 }
 
-h1{
-font-size:34px;
+.layout{
+display:grid;
+grid-template-columns:260px 1fr;
+gap:20px;
 }
 
 .sidebar{
-position:fixed;
-top:0;
-left:-260px;
-width:250px;
-height:100%;
-background:white;
-box-shadow:5px 0 15px rgba(0,0,0,0.1);
-padding:20px;
-transition:0.3s;
-z-index:1000;
-overflow:auto;
-}
 
-.sidebar.active{
-left:0;
+background:white;
+padding:20px;
+border-radius:25px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+height:fit-content;
+
 }
 
 .sidebar h2{
+font-size:24px;
 margin-bottom:20px;
 }
 
-.mes-item{
-padding:12px;
-background:#f3f3f3;
-border-radius:10px;
+.mes{
+
+padding:16px;
+border-radius:14px;
 margin-bottom:10px;
 cursor:pointer;
+transition:0.2s;
+font-size:18px;
+
+}
+
+.mes:hover{
+background:#ecfdf3;
 }
 
 .card{
+
 background:white;
-padding:20px;
-border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
+padding:25px;
+border-radius:25px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
 margin-bottom:20px;
+
 }
 
-.inputs{
+.form-grid{
+
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:15px;
+gap:20px;
+
 }
 
 .input-group{
@@ -99,106 +114,192 @@ flex-direction:column;
 }
 
 label{
-margin-bottom:5px;
+font-size:18px;
+margin-bottom:8px;
 font-weight:600;
 }
 
 input{
-padding:12px;
-border-radius:10px;
-border:1px solid #ddd;
-font-size:16px;
+
+padding:16px;
+border-radius:14px;
+border:1px solid #d1d5db;
+font-size:18px;
+
 }
 
-.botoes{
+.actions{
+
 display:flex;
-gap:10px;
-margin-top:20px;
-}
+gap:15px;
+margin-top:25px;
 
-button{
-border:none;
-padding:14px;
-border-radius:12px;
-font-size:16px;
-cursor:pointer;
 }
 
 .add{
-background:#27ae60;
-color:white;
+
 flex:1;
+background:#22c55e;
+color:white;
+border:none;
+padding:18px;
+border-radius:16px;
+font-size:20px;
+font-weight:600;
+cursor:pointer;
+
 }
 
 .reset{
-background:#e74c3c;
-color:white;
+
+background:white;
+border:1px solid #d1d5db;
+padding:18px 25px;
+border-radius:16px;
+font-size:20px;
+cursor:pointer;
+
 }
 
-.info{
+.stats{
+
 display:flex;
 justify-content:space-between;
+align-items:center;
 margin-bottom:20px;
+
+}
+
+.total-box h3{
+
 font-size:18px;
-font-weight:bold;
+color:#6b7280;
+margin-bottom:8px;
+
+}
+
+.total-box h1{
+
+font-size:52px;
+color:#ef4444;
+
+}
+
+.restante{
+
+font-size:28px;
+font-weight:700;
+color:#22c55e;
+
 }
 
 .progress{
+
 height:18px;
-background:#ddd;
-border-radius:10px;
+background:#e5e7eb;
+border-radius:20px;
 overflow:hidden;
+
 }
 
 .bar{
+
 height:100%;
-background:#27ae60;
+background:#22c55e;
 width:0%;
+
 }
 
 table{
+
 width:100%;
 border-collapse:collapse;
-margin-top:10px;
+
 }
 
 th{
-padding:12px 5px;
-font-size:14px;
-border-bottom:2px solid #eee;
+
+padding:18px 10px;
+font-size:18px;
+border-bottom:2px solid #e5e7eb;
+text-align:center;
+
 }
 
 td{
-padding:14px 5px;
+
+padding:20px 10px;
 text-align:center;
-border-bottom:1px solid #eee;
-font-size:14px;
+font-size:18px;
+border-bottom:1px solid #e5e7eb;
+
 }
 
 .delete{
-background:#ff4d4d;
+
+background:#ef4444;
 color:white;
-width:40px;
-height:40px;
-border-radius:10px;
+border:none;
+width:50px;
+height:50px;
+border-radius:14px;
+font-size:18px;
+cursor:pointer;
+
 }
 
-@media(max-width:700px){
+.footer{
 
-.inputs{
+text-align:center;
+padding:25px;
+color:#64748b;
+font-size:16px;
+
+}
+
+.footer b{
+color:#0f172a;
+}
+
+@media(max-width:1000px){
+
+.layout{
 grid-template-columns:1fr;
 }
 
+.sidebar{
+display:none;
+}
+
+.topbar h1{
+font-size:32px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.stats{
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+}
+
+.total-box h1{
+font-size:42px;
+}
+
+.restante{
+font-size:22px;
+}
+
 table{
-font-size:12px;
+font-size:14px;
 }
 
 th,td{
-padding:8px 2px;
-}
-
-h1{
-font-size:28px;
+padding:10px 5px;
+font-size:14px;
 }
 
 }
@@ -209,25 +310,33 @@ font-size:28px;
 
 <body>
 
-<div class="sidebar" id="sidebar">
+<div class="topbar">
 
-<h2>Meses</h2>
+<button class="menu-btn">
+☰
+</button>
+
+<h1>Controle de Atrasos</h1>
+
+<div></div>
+
+</div>
+
+<div class="layout">
+
+<div class="sidebar">
+
+<h2>Histórico</h2>
 
 <div id="listaMeses"></div>
 
 </div>
 
-<div class="topo">
-
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-<h1>Controle de Atrasos</h1>
-
-</div>
+<div>
 
 <div class="card">
 
-<div class="inputs">
+<div class="form-grid">
 
 <div class="input-group">
 <label>Data</label>
@@ -235,35 +344,30 @@ font-size:28px;
 </div>
 
 <div class="input-group">
-<label>Hora entrada</label>
+<label>Hora de entrada</label>
 <input type="time" id="entrada">
 </div>
 
 <div class="input-group">
-<label>Saída almoço</label>
+<label>Saída para almoço</label>
 <input type="time" id="saida">
 </div>
 
 <div class="input-group">
-<label>Volta almoço</label>
+<label>Volta do almoço</label>
 <input type="time" id="volta">
 </div>
 
-<div class="input-group">
-<label>Tempo almoço permitido (min)</label>
-<input type="number" id="almocoPermitido" value="60">
 </div>
 
-</div>
-
-<div class="botoes">
+<div class="actions">
 
 <button class="add" onclick="adicionar()">
-Adicionar
+Adicionar registro
 </button>
 
 <button class="reset" onclick="resetar()">
-Zerar
+Zerar mês
 </button>
 
 </div>
@@ -272,20 +376,28 @@ Zerar
 
 <div class="card">
 
-<div class="info">
+<div class="stats">
 
-<div id="totalMes">
-Total: 0 min
+<div class="total-box">
+
+<h3>Total de atrasos</h3>
+
+<h1 id="total">
+0 min
+</h1>
+
 </div>
 
-<div id="restante">
+<div class="restante" id="restante">
 Restam: 90 min
 </div>
 
 </div>
 
 <div class="progress">
+
 <div class="bar" id="barra"></div>
+
 </div>
 
 </div>
@@ -300,8 +412,8 @@ Restam: 90 min
 
 <th>Data</th>
 <th>Entrada</th>
-<th>Saída</th>
-<th>Volta</th>
+<th>Saída almoço</th>
+<th>Volta almoço</th>
 <th>Total</th>
 <th></th>
 
@@ -312,6 +424,16 @@ Restam: 90 min
 <tbody id="tabela"></tbody>
 
 </table>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+Desenvolvido por <b>Tiago Silva</b>
 
 </div>
 
@@ -329,7 +451,9 @@ if(!data){
 
 let hoje = new Date()
 
-return hoje.getFullYear()+"-"+String(hoje.getMonth()+1).padStart(2,"0")
+return hoje.getFullYear()+"-"+String(
+hoje.getMonth()+1
+).padStart(2,"0")
 
 }
 
@@ -339,17 +463,22 @@ return data.slice(0,7)
 
 function pegarRegistros(){
 
-return JSON.parse(localStorage.getItem(chaveMes())) || []
+return JSON.parse(
+localStorage.getItem(chaveMes())
+) || []
 
 }
 
 function salvarRegistros(registros){
 
-localStorage.setItem(chaveMes(), JSON.stringify(registros))
+localStorage.setItem(
+chaveMes(),
+JSON.stringify(registros)
+)
 
 }
 
-function calcularMinutos(hora){
+function minutos(hora){
 
 let [h,m] = hora.split(":")
 
@@ -357,17 +486,24 @@ return Number(h)*60 + Number(m)
 
 }
 
-function calcularAtraso(entrada, saida, volta, permitido){
+function calcularTotal(entrada,saida,volta){
 
-let atrasoEntrada = calcularMinutos(entrada) - calcularMinutos("08:00")
+let atrasoEntrada =
+minutos(entrada) - minutos("08:00")
 
-if(atrasoEntrada < 0) atrasoEntrada = 0
+if(atrasoEntrada < 0){
+atrasoEntrada = 0
+}
 
-let tempoAlmoco = calcularMinutos(volta) - calcularMinutos(saida)
+let tempoAlmoco =
+minutos(volta) - minutos(saida)
 
-let atrasoAlmoco = tempoAlmoco - permitido
+let atrasoAlmoco =
+tempoAlmoco - 60
 
-if(atrasoAlmoco < 0) atrasoAlmoco = 0
+if(atrasoAlmoco < 0){
+atrasoAlmoco = 0
+}
 
 return atrasoEntrada + atrasoAlmoco
 
@@ -377,29 +513,37 @@ function atualizar(){
 
 let registros = pegarRegistros()
 
-let tabela = document.getElementById("tabela")
+let tabela =
+document.getElementById("tabela")
 
 tabela.innerHTML = ""
 
-let total = 0
+let totalMes = 0
 
 registros.forEach((r,i)=>{
 
-total += r.total
+totalMes += r.total
 
 tabela.innerHTML += `
 
 <tr>
 
 <td>${r.data}</td>
+
 <td>${r.entrada}</td>
+
 <td>${r.saida}</td>
+
 <td>${r.volta}</td>
-<td>${r.total} min</td>
+
+<td style="color:#ef4444;font-weight:700;">
+${r.total} min
+</td>
 
 <td>
 
-<button class="delete" onclick="remover(${i})">
+<button class="delete"
+onclick="remover(${i})">
 
 X
 
@@ -413,21 +557,23 @@ X
 
 })
 
-document.getElementById("totalMes").innerText =
-"Total: "+total+" min"
+document.getElementById("total")
+.innerText = totalMes+" min"
 
-document.getElementById("restante").innerText =
-"Restam: "+(limite-total)+" min"
+document.getElementById("restante")
+.innerText =
+"Restam: "+(limite-totalMes)+" min"
 
-let porcentagem = (total/limite)*100
+let porcentagem =
+(totalMes/limite)*100
 
-document.getElementById("barra").style.width =
-porcentagem+"%"
+document.getElementById("barra")
+.style.width = porcentagem+"%"
 
-if(total > limite){
+if(totalMes > limite){
 
-document.getElementById("barra").style.background =
-"#ff4d4d"
+document.getElementById("barra")
+.style.background = "#ef4444"
 
 }
 
@@ -437,40 +583,48 @@ carregarMeses()
 
 function adicionar(){
 
-let data = document.getElementById("data").value
+let data =
+document.getElementById("data").value
 
-let entrada = document.getElementById("entrada").value
+let entrada =
+document.getElementById("entrada").value
 
-let saida = document.getElementById("saida").value
+let saida =
+document.getElementById("saida").value
 
-let volta = document.getElementById("volta").value
+let volta =
+document.getElementById("volta").value
 
-let permitido =
-Number(document.getElementById("almocoPermitido").value)
+if(
+!data ||
+!entrada ||
+!saida ||
+!volta
+){
 
-if(!data || !entrada || !saida || !volta){
-
-alert("Preencha tudo")
+alert("Preencha todos os campos")
 
 return
 
 }
 
-let total = calcularAtraso(
+let total =
+calcularTotal(
 entrada,
 saida,
-volta,
-permitido
+volta
 )
 
 let registros = pegarRegistros()
 
 registros.push({
+
 data,
 entrada,
 saida,
 volta,
 total
+
 })
 
 salvarRegistros(registros)
@@ -505,19 +659,41 @@ atualizar()
 
 function carregarMeses(){
 
-let lista = document.getElementById("listaMeses")
+let lista =
+document.getElementById("listaMeses")
 
 lista.innerHTML = ""
 
-Object.keys(localStorage).forEach(chave=>{
+Object.keys(localStorage)
+.forEach(chave=>{
 
 if(chave.includes("-")){
 
+let [ano,mes] = chave.split("-")
+
+let meses = [
+
+"Janeiro",
+"Fevereiro",
+"Março",
+"Abril",
+"Maio",
+"Junho",
+"Julho",
+"Agosto",
+"Setembro",
+"Outubro",
+"Novembro",
+"Dezembro"
+
+]
+
 lista.innerHTML += `
 
-<div class="mes-item" onclick="abrirMes('${chave}')">
+<div class="mes"
+onclick="abrirMes('${chave}')">
 
-${chave}
+${meses[Number(mes)-1]} de ${ano}
 
 </div>
 
@@ -531,31 +707,42 @@ ${chave}
 
 function abrirMes(chave){
 
-let registros = JSON.parse(localStorage.getItem(chave)) || []
+let registros =
+JSON.parse(
+localStorage.getItem(chave)
+) || []
 
-let tabela = document.getElementById("tabela")
+let tabela =
+document.getElementById("tabela")
 
 tabela.innerHTML = ""
 
-let total = 0
+let totalMes = 0
 
 registros.forEach((r,i)=>{
 
-total += r.total
+totalMes += r.total
 
 tabela.innerHTML += `
 
 <tr>
 
 <td>${r.data}</td>
+
 <td>${r.entrada}</td>
+
 <td>${r.saida}</td>
+
 <td>${r.volta}</td>
-<td>${r.total} min</td>
+
+<td style="color:#ef4444;font-weight:700;">
+${r.total} min
+</td>
 
 <td>
 
-<button class="delete" onclick="remover(${i})">
+<button class="delete"
+onclick="remover(${i})">
 
 X
 
@@ -569,18 +756,12 @@ X
 
 })
 
-document.getElementById("totalMes").innerText =
-"Total: "+total+" min"
+document.getElementById("total")
+.innerText = totalMes+" min"
 
-document.getElementById("restante").innerText =
-"Restam: "+(limite-total)+" min"
-
-}
-
-function toggleMenu(){
-
-document.getElementById("sidebar")
-.classList.toggle("active")
+document.getElementById("restante")
+.innerText =
+"Restam: "+(limite-totalMes)+" min"
 
 }
 
