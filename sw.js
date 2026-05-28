@@ -1,19 +1,35 @@
-self.addEventListener("install", e => {
+const CACHE_NAME = "controle-atrasos-v2"
 
-e.waitUntil(
+const urlsToCache = [
+  "/",
+  "/index.html",
+  "/manifest.json"
+]
 
-caches.open("controle-atrasos").then(cache => {
+self.addEventListener("install", event => {
 
-return cache.addAll([
+  event.waitUntil(
 
-"/",
-"/index.html",
-"/manifest.json"
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        return cache.addAll(urlsToCache)
+      })
 
-])
+  )
 
 })
 
-)
+self.addEventListener("fetch", event => {
+
+  event.respondWith(
+
+    caches.match(event.request)
+      .then(response => {
+
+        return response || fetch(event.request)
+
+      })
+
+  )
 
 })
