@@ -36,13 +36,11 @@ margin-bottom:25px;
 }
 
 .topbar h1{
-font-size:42px;
+font-size:36px;
 font-weight:700;
-color:#0f172a;
 }
 
 .menu-btn{
-
 width:50px;
 height:50px;
 border:none;
@@ -51,7 +49,6 @@ background:white;
 font-size:24px;
 box-shadow:0 4px 12px rgba(0,0,0,0.08);
 cursor:pointer;
-
 }
 
 .layout{
@@ -61,29 +58,25 @@ gap:20px;
 }
 
 .sidebar{
-
 background:white;
 padding:20px;
 border-radius:25px;
 box-shadow:0 5px 20px rgba(0,0,0,0.08);
 height:fit-content;
-
 }
 
 .sidebar h2{
-font-size:24px;
 margin-bottom:20px;
+font-size:24px;
 }
 
 .mes{
-
-padding:16px;
+padding:15px;
 border-radius:14px;
 margin-bottom:10px;
 cursor:pointer;
 transition:0.2s;
 font-size:18px;
-
 }
 
 .mes:hover{
@@ -91,21 +84,17 @@ background:#ecfdf3;
 }
 
 .card{
-
 background:white;
 padding:25px;
 border-radius:25px;
 box-shadow:0 5px 20px rgba(0,0,0,0.08);
 margin-bottom:20px;
-
 }
 
 .form-grid{
-
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:20px;
-
 }
 
 .input-group{
@@ -114,30 +103,25 @@ flex-direction:column;
 }
 
 label{
-font-size:18px;
 margin-bottom:8px;
 font-weight:600;
+font-size:18px;
 }
 
 input{
-
 padding:16px;
 border-radius:14px;
 border:1px solid #d1d5db;
 font-size:18px;
-
 }
 
 .actions{
-
 display:flex;
 gap:15px;
 margin-top:25px;
-
 }
 
 .add{
-
 flex:1;
 background:#22c55e;
 color:white;
@@ -147,96 +131,73 @@ border-radius:16px;
 font-size:20px;
 font-weight:600;
 cursor:pointer;
-
 }
 
 .reset{
-
 background:white;
 border:1px solid #d1d5db;
 padding:18px 25px;
 border-radius:16px;
 font-size:20px;
 cursor:pointer;
-
 }
 
 .stats{
-
 display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
-
 }
 
 .total-box h3{
-
 font-size:18px;
 color:#6b7280;
 margin-bottom:8px;
-
 }
 
 .total-box h1{
-
 font-size:52px;
 color:#ef4444;
-
 }
 
 .restante{
-
 font-size:28px;
 font-weight:700;
 color:#22c55e;
-
 }
 
 .progress{
-
 height:18px;
 background:#e5e7eb;
 border-radius:20px;
 overflow:hidden;
-
 }
 
 .bar{
-
 height:100%;
 background:#22c55e;
 width:0%;
-
 }
 
 table{
-
 width:100%;
 border-collapse:collapse;
-
 }
 
 th{
-
 padding:18px 10px;
 font-size:18px;
 border-bottom:2px solid #e5e7eb;
-text-align:center;
-
 }
 
 td{
-
-padding:20px 10px;
+padding:18px 10px;
 text-align:center;
-font-size:18px;
 border-bottom:1px solid #e5e7eb;
-
+font-size:18px;
 }
 
 .delete{
-
 background:#ef4444;
 color:white;
 border:none;
@@ -245,20 +206,17 @@ height:50px;
 border-radius:14px;
 font-size:18px;
 cursor:pointer;
-
 }
 
 .footer{
-
 text-align:center;
 padding:25px;
 color:#64748b;
-font-size:16px;
-
+font-size:15px;
 }
 
 .footer b{
-color:#0f172a;
+color:#111827;
 }
 
 @media(max-width:1000px){
@@ -269,10 +227,9 @@ grid-template-columns:1fr;
 
 .sidebar{
 display:none;
-}
-
-.topbar h1{
-font-size:32px;
+position:absolute;
+z-index:999;
+width:85%;
 }
 
 .form-grid{
@@ -285,12 +242,8 @@ align-items:flex-start;
 gap:15px;
 }
 
-.total-box h1{
-font-size:42px;
-}
-
-.restante{
-font-size:22px;
+.topbar h1{
+font-size:28px;
 }
 
 table{
@@ -349,12 +302,12 @@ font-size:14px;
 </div>
 
 <div class="input-group">
-<label>Saída para almoço</label>
+<label>Saída almoço</label>
 <input type="time" id="saida">
 </div>
 
 <div class="input-group">
-<label>Volta do almoço</label>
+<label>Volta almoço</label>
 <input type="time" id="volta">
 </div>
 
@@ -363,7 +316,7 @@ font-size:14px;
 <div class="actions">
 
 <button class="add" onclick="adicionar()">
-Adicionar registro
+Salvar registro
 </button>
 
 <button class="reset" onclick="resetar()">
@@ -412,8 +365,8 @@ Restam: 90 min
 
 <th>Data</th>
 <th>Entrada</th>
-<th>Saída almoço</th>
-<th>Volta almoço</th>
+<th>Saída</th>
+<th>Volta</th>
 <th>Total</th>
 <th></th>
 
@@ -445,7 +398,8 @@ let limite = 90
 
 function chaveMes(){
 
-let data = document.getElementById("data").value
+let data =
+document.getElementById("data").value
 
 if(!data){
 
@@ -479,6 +433,8 @@ JSON.stringify(registros)
 }
 
 function minutos(hora){
+
+if(!hora) return 0
 
 let [h,m] = hora.split(":")
 
@@ -530,11 +486,11 @@ tabela.innerHTML += `
 
 <td>${r.data}</td>
 
-<td>${r.entrada}</td>
+<td>${r.entrada || "-"}</td>
 
-<td>${r.saida}</td>
+<td>${r.saida || "-"}</td>
 
-<td>${r.volta}</td>
+<td>${r.volta || "-"}</td>
 
 <td style="color:#ef4444;font-weight:700;">
 ${r.total} min
@@ -595,37 +551,61 @@ document.getElementById("saida").value
 let volta =
 document.getElementById("volta").value
 
-if(
-!data ||
-!entrada ||
-!saida ||
-!volta
-){
+if(!data){
 
-alert("Preencha todos os campos")
+alert("Escolha uma data")
 
 return
 
 }
 
-let total =
+let registros = pegarRegistros()
+
+let existente =
+registros.find(r => r.data === data)
+
+if(existente){
+
+if(entrada){
+existente.entrada = entrada
+}
+
+if(saida){
+existente.saida = saida
+}
+
+if(volta){
+existente.volta = volta
+}
+
+if(
+existente.entrada &&
+existente.saida &&
+existente.volta
+){
+
+existente.total =
 calcularTotal(
-entrada,
-saida,
-volta
+existente.entrada,
+existente.saida,
+existente.volta
 )
 
-let registros = pegarRegistros()
+}
+
+}else{
 
 registros.push({
 
 data,
-entrada,
-saida,
-volta,
-total
+entrada: entrada || "",
+saida: saida || "",
+volta: volta || "",
+total: 0
 
 })
+
+}
 
 salvarRegistros(registros)
 
@@ -693,7 +673,7 @@ lista.innerHTML += `
 <div class="mes"
 onclick="abrirMes('${chave}')">
 
-${meses[Number(mes)-1]} de ${ano}
+${meses[Number(mes)-1]} ${ano}
 
 </div>
 
@@ -729,11 +709,11 @@ tabela.innerHTML += `
 
 <td>${r.data}</td>
 
-<td>${r.entrada}</td>
+<td>${r.entrada || "-"}</td>
 
-<td>${r.saida}</td>
+<td>${r.saida || "-"}</td>
 
-<td>${r.volta}</td>
+<td>${r.volta || "-"}</td>
 
 <td style="color:#ef4444;font-weight:700;">
 ${r.total} min
@@ -764,6 +744,48 @@ document.getElementById("restante")
 "Restam: "+(limite-totalMes)+" min"
 
 }
+
+const menuBtn =
+document.querySelector(".menu-btn")
+
+const sidebar =
+document.querySelector(".sidebar")
+
+menuBtn.addEventListener("click",()=>{
+
+if(window.innerWidth <= 1000){
+
+if(sidebar.style.display === "block"){
+
+sidebar.style.display = "none"
+
+}else{
+
+sidebar.style.display = "block"
+
+}
+
+}
+
+})
+
+document.addEventListener("click",(e)=>{
+
+if(
+!sidebar.contains(e.target)
+&&
+!menuBtn.contains(e.target)
+){
+
+if(window.innerWidth <= 1000){
+
+sidebar.style.display = "none"
+
+}
+
+}
+
+})
 
 atualizar()
 
