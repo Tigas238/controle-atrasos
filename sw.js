@@ -1,9 +1,10 @@
-const CACHE_NAME = "controle-atrasos-v2"
+const CACHE_NAME = "controle-atrasos-v3"
 
 const urlsToCache = [
   "/",
   "/index.html",
-  "/manifest.json"
+  "/manifest.json",
+  "/icon-512.png"
 ]
 
 self.addEventListener("install", event => {
