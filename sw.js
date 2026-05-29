@@ -1,4 +1,4 @@
-const CACHE_NAME = "controle-atrasos-v3"
+const CACHE_NAME = "controle-atrasos-v4"
 
 const urlsToCache = [
   "/",
