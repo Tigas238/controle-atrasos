@@ -36,7 +36,7 @@ margin-bottom:25px;
 }
 
 .topbar h1{
-font-size:36px;
+font-size:34px;
 font-weight:700;
 }
 
@@ -228,8 +228,10 @@ grid-template-columns:1fr;
 .sidebar{
 display:none;
 position:absolute;
-z-index:999;
+top:90px;
+left:20px;
 width:85%;
+z-index:999;
 }
 
 .form-grid{
@@ -243,7 +245,7 @@ gap:15px;
 }
 
 .topbar h1{
-font-size:28px;
+font-size:26px;
 }
 
 table{
@@ -405,9 +407,8 @@ if(!data){
 
 let hoje = new Date()
 
-return hoje.getFullYear()+"-"+String(
-hoje.getMonth()+1
-).padStart(2,"0")
+return hoje.getFullYear() + "-" +
+String(hoje.getMonth()+1).padStart(2,"0")
 
 }
 
@@ -514,24 +515,17 @@ X
 })
 
 document.getElementById("total")
-.innerText = totalMes+" min"
+.innerText = totalMes + " min"
 
 document.getElementById("restante")
 .innerText =
-"Restam: "+(limite-totalMes)+" min"
+"Restam: " + (limite-totalMes) + " min"
 
 let porcentagem =
 (totalMes/limite)*100
 
 document.getElementById("barra")
-.style.width = porcentagem+"%"
-
-if(totalMes > limite){
-
-document.getElementById("barra")
-.style.background = "#ef4444"
-
-}
+.style.width = porcentagem + "%"
 
 carregarMeses()
 
@@ -620,12 +614,15 @@ saida: saida || "",
 volta: volta || "",
 total
 
-
 })
 
 }
 
 salvarRegistros(registros)
+
+document.getElementById("entrada").value = ""
+document.getElementById("saida").value = ""
+document.getElementById("volta").value = ""
 
 atualizar()
 
@@ -717,7 +714,7 @@ tabela.innerHTML = ""
 
 let totalMes = 0
 
-registros.forEach((r,i)=>{
+registros.forEach((r)=>{
 
 totalMes += r.total
 
@@ -737,16 +734,7 @@ tabela.innerHTML += `
 ${r.total} min
 </td>
 
-<td>
-
-<button class="delete"
-onclick="remover(${i})">
-
-X
-
-</button>
-
-</td>
+<td></td>
 
 </tr>
 
@@ -755,11 +743,11 @@ X
 })
 
 document.getElementById("total")
-.innerText = totalMes+" min"
+.innerText = totalMes + " min"
 
 document.getElementById("restante")
 .innerText =
-"Restam: "+(limite-totalMes)+" min"
+"Restam: " + (limite-totalMes) + " min"
 
 }
 
