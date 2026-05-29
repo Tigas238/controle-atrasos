@@ -445,12 +445,22 @@ return Number(h)*60 + Number(m)
 
 function calcularTotal(entrada,saida,volta){
 
+let total = 0
+
+if(entrada){
+
 let atrasoEntrada =
 minutos(entrada) - minutos("08:00")
 
-if(atrasoEntrada < 0){
-atrasoEntrada = 0
+if(atrasoEntrada > 0){
+
+total += atrasoEntrada
+
 }
+
+}
+
+if(saida && volta){
 
 let tempoAlmoco =
 minutos(volta) - minutos(saida)
@@ -458,11 +468,15 @@ minutos(volta) - minutos(saida)
 let atrasoAlmoco =
 tempoAlmoco - 60
 
-if(atrasoAlmoco < 0){
-atrasoAlmoco = 0
+if(atrasoAlmoco > 0){
+
+total += atrasoAlmoco
+
 }
 
-return atrasoEntrada + atrasoAlmoco
+}
+
+return total
 
 }
 
@@ -572,12 +586,6 @@ if(volta){
 existente.volta = volta
 }
 
-if(
-existente.entrada &&
-existente.saida &&
-existente.volta
-){
-
 existente.total =
 calcularTotal(
 existente.entrada,
@@ -585,26 +593,14 @@ existente.saida,
 existente.volta
 )
 
-}
-
 }else{
 
-let total = 0
-
-if(
-entrada &&
-saida &&
-volta
-){
-
-total =
+let total =
 calcularTotal(
 entrada,
 saida,
 volta
 )
-
-}
 
 registros.push({
 
