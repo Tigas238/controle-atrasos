@@ -595,13 +595,31 @@ existente.volta
 
 }else{
 
+let total = 0
+
+if(
+entrada &&
+saida &&
+volta
+){
+
+total =
+calcularTotal(
+entrada,
+saida,
+volta
+)
+
+}
+
 registros.push({
 
 data,
 entrada: entrada || "",
 saida: saida || "",
 volta: volta || "",
-total: 0
+total
+
 
 })
 
